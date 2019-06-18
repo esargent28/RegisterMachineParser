@@ -1,29 +1,42 @@
 from register_machine import RegisterMachine
 
 
-def TestAdditionMachine():
+def testAdditionMachine():
 
     print("  --> Testing addiiton...", end=' ')
     additionMachine = RegisterMachine('examples/addition.txt')
 
-    res1 = additionMachine.run(10, 11)
-    res2 = additionMachine.run(0, 10)
-    res3 = additionMachine.run(11037, 0)
-    res4 = additionMachine.run(0, 0)
-    res5 = additionMachine.run(11037, 11037)
+    def testResult(x, y):
+        res = additionMachine.run(x, y)
+        assert(len(res) == 1 and res[0] == x + y)
 
-    assert(len(res1) == 1 and res1[0] == 21)
-    assert(len(res2) == 1 and res2[0] == 10)
-    assert(len(res3) == 1 and res3[0] == 11037)
-    assert(len(res4) == 1 and res4[0] == 0)
-    assert(len(res5) == 1 and res5[0] == 2*11037)
+    for i in range(100):
+        for j in range(i, 100):
+            testResult(i, j)
+
+    print("Done!")
+
+
+def testMultiplicationMachine():
+
+    print("  --> Testing multiplication...", end=' ')
+    multiplicationMachine = RegisterMachine('examples/multiplication.txt')
+
+    def testResult(x, y):
+        res = multiplicationMachine.run(x, y)
+        assert(len(res) == 1 and res[0] == x * y)
+
+    for i in range(50):
+        for j in range(i, 50):
+            testResult(i, j)
 
     print("Done!")
 
 
 def runTests():
     print("Running register machine tests...")
-    TestAdditionMachine()
+    testAdditionMachine()
+    testMultiplicationMachine()
     print("Done")
 
 runTests()
