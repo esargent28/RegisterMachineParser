@@ -33,7 +33,7 @@ class RegisterMachineState:
 class RegisterMachine:
 
     def __init__(self, filepath):
-        # Initialize registers & statesß
+        # Initialize registers & states
         self.registers = []
         self.states = []
 
